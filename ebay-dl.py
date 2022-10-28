@@ -5,10 +5,10 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
-def parse_itemssold(text):
+def parse_itemssold(text):  
     numbers = ''
     for char in text:
-        if char >= '1234567890':
+        if char in '1234567890':
             numbers += char
     if 'sold' in text:
         return int(numbers)
@@ -51,13 +51,22 @@ for page_number in range(1,int(args.num_pages)+1):
         for tag in tags_name:
             name = tag.text
 
+        #price = None
+
+
+        #status = None
+
+
+        #shipping = None
+
+
         freereturns = False
         tags_freereturn = tag_item.select('.s-item__free-returns')
         for tag in tags_freereturn:
             freereturns = True
 
         items_sold = None
-        tags_itemssold = tag.item.select()
+        tags_itemssold = tag.item.select('.s-item__hotness')
         for tag in tags_itemssold:
             items_sold = parse_itemssold(tag.text)
 
