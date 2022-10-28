@@ -56,6 +56,12 @@ for page_number in range(1,int(args.num_pages)+1):
 
 print('len(tags_tag_items)=', len(tags_items))
 
+# write to json file
 filename = args.search_term+'.json'
 with open(filename, 'w', encoding='ascii') as f:
-    f.write(json.dumps)
+    f.write(json.dumps(items))
+
+# write to csv file
+filenamecsv = args.search_term+'.csv'
+with open(filenamecsv, 'w', encoding='ascii') as f:
+    f.write(name+ "," + freereturns+ "\n")
