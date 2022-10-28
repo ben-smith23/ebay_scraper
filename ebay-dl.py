@@ -5,6 +5,16 @@ import requests
 from bs4 import BeautifulSoup
 import json
 
+def parse_itemssold(text):
+    numbers = ''
+    for char in text:
+        if char >= '1234567890':
+            numbers += char
+    if 'sold' in text:
+        return int(numbers)
+    else:
+        return 0
+
 # get command line arguments
 parser = argparse.ArgumentParser(description='download ebay information and convert to JSON')
 parser.add_argument('search_term')
@@ -46,9 +56,15 @@ for page_number in range(1,int(args.num_pages)+1):
         for tag in tags_freereturn:
             freereturns = True
 
+        items_sold = None
+        tags_itemssold = tag.item.select()
+        for tag in tags_itemssold:
+            items_sold = parse_itemssold(tag.text)
+
         item ={
             'name': name,
-            'free_returns': freereturns
+            'free_returns': freereturns,
+            'items_sold': items_sold
         }
         items.append(item)
 
@@ -57,13 +73,13 @@ for page_number in range(1,int(args.num_pages)+1):
 
 print('len(tags_tag_items)=', len(tags_items))
 
-if args.csv == True:
+#if args.csv == True:
     # write to csv file
-    filenamecsv = args.search_term+'.csv'
-    with open(filenamecsv, 'w', encoding='ascii') as f:
-        f.write(name+ "," + str(freereturns) + "\n")
-else:
+filenamecsv = args.search_term+'.csv'
+with open(filenamecsv, 'w', encoding='ascii') as f:
+    f.write(name + "," + str(freereturns) + "," + items_sold + "\n")
+#else:
 # write to json file
-    filename = args.search_term+'.json'
-    with open(filename, 'w', encoding='ascii') as fj:
-        fj.write(json.dumps(items))
+filename = args.search_term+'.json'
+with open(filename, 'w', encoding='ascii') as fj:
+    fj.write(json.dumps(items))
