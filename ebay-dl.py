@@ -14,14 +14,17 @@ def parse_price(text):
             prices += ''
     return int(prices)
 
-#if __name__ == '__main__':
-
 def parse_shipping(text):
-    numbers = ''
+    prices = ''
     for char in text:
         if char in '1234567890':
-            numbers += char
-
+            prices += char
+        else:
+            prices += ''
+        return prices
+    if 'Free shippping' in text:
+        return 0
+    
 def parse_itemssold(text):  
     numbers = ''
     for char in text:
@@ -31,6 +34,8 @@ def parse_itemssold(text):
         return int(numbers)
     else:
         return 0
+
+#if __name__ == '__main__':
 
 # get command line arguments
 parser = argparse.ArgumentParser(description='download ebay information and convert to JSON')
@@ -77,12 +82,12 @@ for page_number in range(1,int(args.num_pages)+1):
         tags_status = tag_item.select('.SECONDARY_INFO')
         for tag in tags_status:
             status = tag.text
-        '''
+        
         shipping = None
         tags_shipping = tag_item.select('.s-item__shipping')
         for tag in tags_shipping:
             shipping = parse_shipping(tag.text)
-        '''
+        
         freereturns = False
         tags_freereturn = tag_item.select('.s-item__free-returns')
         for tag in tags_freereturn:
@@ -97,7 +102,7 @@ for page_number in range(1,int(args.num_pages)+1):
             'name': name,
             'price': price,
             'status': status,
-            'shipping': price,
+            'shipping': shipping,
             'free_returns': freereturns,
             'items_sold': items_sold
         }
@@ -113,7 +118,7 @@ print('len(tags_tag_items)=', len(tags_items))
 filenamecsv = args.search_term+'.csv'
 with open(filenamecsv, 'w', encoding='ascii') as f:
     for item in items:
-        f.write(name + "," + str(price) + "," + status + "," + str(freereturns) + "," + str(items_sold) + "\n")
+        f.write(name + "," + price + "," + status + "," + shipping + "," + str(freereturns) + "," + str(items_sold) + "\n")
 #else:
 # write to json file
 filename = args.search_term+'.json'
