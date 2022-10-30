@@ -4,6 +4,7 @@ from fileinput import filename
 import requests
 from bs4 import BeautifulSoup
 import json
+import csv
 
 def parse_price(text):
     prices = ''
@@ -87,10 +88,10 @@ for page_number in range(1,int(args.num_pages)+1):
         for tag in tags_shipping:
             shipping = parse_shipping(tag.text)
         
-        freereturns = False
+        free_returns = False
         tags_freereturn = tag_item.select('.s-item__free-returns')
         for tag in tags_freereturn:
-            freereturns = True
+            free_returns = True
 
         items_sold = None
         tags_itemssold = tag_item.select('.s-item__hotness')
@@ -102,23 +103,23 @@ for page_number in range(1,int(args.num_pages)+1):
             'price': price,
             'status': status,
             'shipping': shipping,
-            'free_returns': freereturns,
+            'free_returns': free_returns,
             'items_sold': items_sold
         }
         items.append(item)
-
-    for item in items:
-        pass
-        # print('items=',items)
 
 print('len(tags_tag_items)=', len(tags_items))
 
 if bool(args.csv) == True:
     # write to csv file
+    csv_columns= ['name', 'price', 'status', 'shipping', 'free_returns', 'items_sold']
     filenamecsv = args.search_term+'.csv'
-    with open(filenamecsv, 'w', encoding='ascii') as f:
+    with open(filenamecsv, 'w', newline='', encoding='ascii') as f:
+        ebaycsv = csv.DictWriter(f, fieldnames=csv_columns)
+        ebaycsv.writeheader()
         for item in items:
-            f.write(name + "," + str(price) + "," + status + "," + str(shipping) + "," + str(freereturns) + "," + str(items_sold) + "\n")
+            ebaycsv.writerow(item)
+
 else:
 # write to json file
     filename = args.search_term+'.json'
