@@ -6,25 +6,29 @@ from bs4 import BeautifulSoup
 import json
 import csv
 
-def parse_price(text):
-    prices = ''
-    for char in text:
-        if char in '1234567890':
-            prices += char
-        else:
-            prices += ''
-    return prices
+def parse_price(tag):
+    tag = str(tag)
+    if 'DEFAULT' in tag:
+        tag = tag.split('DEFAULT',1)[0]
+        numbers = ''
+        for char in tag:
+            if char in '1234567890':
+                numbers += char
+    else:
+        numbers = ''
+        for char in tag:
+            if char in '1234567890':
+                numbers += char
+    return numbers
 
 def parse_shipping(text):
-    prices = ''
+    numbers = ''
     for char in text:
         if 'free shipping' in text.lower():
             return 0
         elif char in '1234567890':
-            prices += char
-        else:
-            prices += ''
-    return prices
+            numbers += char
+    return numbers
     
 def parse_itemssold(text):  
     numbers = ''
@@ -76,7 +80,7 @@ for page_number in range(1,int(args.num_pages)+1):
         price = None
         tags_price = tag_item.select('.s-item__price')
         for tag in tags_price:
-            price = parse_price(tag.text)
+            price = parse_price(tag)
 
         status = None
         tags_status = tag_item.select('.SECONDARY_INFO')
