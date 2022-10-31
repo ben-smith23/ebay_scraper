@@ -113,7 +113,7 @@ if bool(args.csv) == True:
     csv_columns= ['name', 'price', 'status', 'shipping', 'free_returns', 'items_sold']
     filenamecsv = args.search_term+'.csv'
     filenamecsv = filenamecsv.replace(" ", "_")
-    with open(filenamecsv, 'w', newline='', encoding='ascii') as f:
+    with open(filenamecsv, 'w', newline='', encoding='utf-8') as f:
         ebaycsv = csv.DictWriter(f, fieldnames=csv_columns)
         ebaycsv.writeheader()
         for item in items:
@@ -123,5 +123,5 @@ else:
     # write to json file
     filename = args.search_term+'.json'
     filename = filename.replace(" ", "_")
-    with open(filename, 'w', encoding='ascii') as fj:
+    with open(filename, 'w', encoding='utf-8') as fj:
         fj.write(json.dumps(items))
