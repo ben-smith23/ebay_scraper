@@ -18,13 +18,13 @@ def parse_price(text):
 def parse_shipping(text):
     prices = ''
     for char in text:
-        if char in '1234567890':
+        if 'free shipping' in text.lower():
+            return 0
+        elif char in '1234567890':
             prices += char
         else:
             prices += ''
-        return prices
-    if 'Free shippping' in text:
-        return 0
+    return prices
     
 def parse_itemssold(text):  
     numbers = ''
@@ -45,7 +45,7 @@ parser.add_argument('--num_pages', default=10)
 parser.add_argument('--csv', default=False)
 args = parser.parse_args()
 
-print('args.search_terms=', args.search_term)
+#print('args.search_terms=', args.search_term)
 
 # list of all ebay items
 items = []
@@ -108,20 +108,20 @@ for page_number in range(1,int(args.num_pages)+1):
         }
         items.append(item)
 
-print('len(tags_tag_items)=', len(tags_items))
+#print('len(tags_tag_items)=', len(tags_items))
 
 if bool(args.csv) == True:
     # write to csv file
     csv_columns= ['name', 'price', 'status', 'shipping', 'free_returns', 'items_sold']
     filenamecsv = args.search_term+'.csv'
-    with open(filenamecsv, 'w', newline='', encoding='ascii') as f:
+    with open(filenamecsv, 'w', newline='', encoding='utf-8') as f:
         ebaycsv = csv.DictWriter(f, fieldnames=csv_columns)
         ebaycsv.writeheader()
         for item in items:
             ebaycsv.writerow(item)
 
 else:
-# write to json file
+    # write to json file
     filename = args.search_term+'.json'
     with open(filename, 'w', encoding='ascii') as fj:
         fj.write(json.dumps(items))
