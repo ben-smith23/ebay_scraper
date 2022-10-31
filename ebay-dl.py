@@ -45,7 +45,7 @@ parser.add_argument('--num_pages', default=10)
 parser.add_argument('--csv', default=False)
 args = parser.parse_args()
 
-#print('args.search_terms=', args.search_term)
+print('args.search_terms=', args.search_term)
 
 # list of all ebay items
 items = []
@@ -108,13 +108,12 @@ for page_number in range(1,int(args.num_pages)+1):
         }
         items.append(item)
 
-#print('len(tags_tag_items)=', len(tags_items))
-
 if bool(args.csv) == True:
     # write to csv file
     csv_columns= ['name', 'price', 'status', 'shipping', 'free_returns', 'items_sold']
     filenamecsv = args.search_term+'.csv'
-    with open(filenamecsv, 'w', newline='', encoding='utf-8') as f:
+    filenamecsv = filenamecsv.replace(" ", "_")
+    with open(filenamecsv, 'w', newline='', encoding='ascii') as f:
         ebaycsv = csv.DictWriter(f, fieldnames=csv_columns)
         ebaycsv.writeheader()
         for item in items:
@@ -123,5 +122,6 @@ if bool(args.csv) == True:
 else:
     # write to json file
     filename = args.search_term+'.json'
+    filename = filename.replace(" ", "_")
     with open(filename, 'w', encoding='ascii') as fj:
         fj.write(json.dumps(items))
