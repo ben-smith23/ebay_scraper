@@ -1,6 +1,6 @@
 # Ebay Scraper
 
-[Instructions for Project_03](https://github.com/mikeizbicki/cmc-csci040/tree/2022fall/project_03)
+[Instructions for project_03](https://github.com/mikeizbicki/cmc-csci040/tree/2022fall/project_03)
 
 This python script scrapes information from eBay search query results for items for sale and converts them into a JSON file or, if specified, a CSV file. The script provides information on products name, price, status, shipping cost, whether the product has free returns, and number of items sold.
 
@@ -37,5 +37,3 @@ By default, the script scrapes the first ten pages of results from eBay. The num
 ```
 $ python3 ebay-dl.py 'fanny pack' --num_pages=7
 ```
-
-After running these commands, depending on which is specified, either a JSON or CSV file will appear in your workspace and folder.
