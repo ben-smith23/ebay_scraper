@@ -12,7 +12,7 @@ PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
 c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py search_term
 ```
 
-<code>search_term</code> is the product you intend to search for. For example, if you want to scrape brooms from eBay, simply write "brooms" in the terminal.
+<code>search_term</code> is the product you intend to search for. For example, if you want to scrapeinformaton on brooms from eBay, simply write "brooms" in the terminal.
 
 ```
 PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
@@ -35,3 +35,5 @@ PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
 & C:/Users/Ben/AppData/Local/Programs/Python/Python310/python.exe
 c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py 'fanny pack' csv=True
 ```
+
+After running these commands, depending on which is specified, either a JSON or CSV file will appear in your workspace and folder.
