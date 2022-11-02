@@ -19,3 +19,11 @@ PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
 & C:/Users/Ben/AppData/Local/Programs/Python/Python310/python.exe
 c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py 'fanny pack'
 ```
+
+If you want to scrape eBay results into a CSV file rather than a JSON file, use the <code>--csv</code> argument. After you enter your <code>search_term</code> in the terminal, write --csv=True
+
+```
+PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
+& C:/Users/Ben/AppData/Local/Programs/Python/Python310/python.exe
+c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py 'fanny pack' csv=True
+```
