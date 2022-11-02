@@ -112,7 +112,11 @@ for page_number in range(1,int(args.num_pages)+1):
             'free_returns': free_returns,
             'items_sold': items_sold
         }
-        items.append(item)
+        
+        if 'Shop on eBay' in item['name']:
+                continue
+        else:
+            items.append(item)
 
 if bool(args.csv) == True:
     # write to csv file
@@ -123,10 +127,7 @@ if bool(args.csv) == True:
         ebaycsv = csv.DictWriter(f, fieldnames=csv_columns)
         ebaycsv.writeheader()
         for item in items:
-            if 'Shop on eBay' in item['name']:
-                continue
-            else:
-                ebaycsv.writerow(item)
+            ebaycsv.writerow(item)
 
 else:
     # write to json file
