@@ -8,7 +8,9 @@ import csv
 
 def parse_price(tag):
     tag = str(tag)
-    if 'DEFAULT' in tag:
+    if "See price" in tag:
+        return str('See price')
+    elif 'DEFAULT' in tag:
         tag = tag.split('DEFAULT',1)[0]
         numbers = ''
         for char in tag:
@@ -88,7 +90,7 @@ for page_number in range(1,int(args.num_pages)+1):
             status = tag.text
         
         shipping = None
-        tags_shipping = tag_item.select('.s-item__shipping')
+        tags_shipping = tag_item.select('.s-item__shipping, .s-item__freeXDays')
         for tag in tags_shipping:
             shipping = parse_shipping(tag.text)
         
@@ -98,7 +100,7 @@ for page_number in range(1,int(args.num_pages)+1):
             free_returns = True
 
         items_sold = None
-        tags_itemssold = tag_item.select('.s-item__hotness')
+        tags_itemssold = tag_item.select('.s-item__hotness, .s-item__additionalItemhotness')
         for tag in tags_itemssold:
             items_sold = parse_itemssold(tag.text)
 
@@ -131,8 +133,4 @@ else:
     filename = args.search_term+'.json'
     filename = filename.replace(" ", "_")
     with open(filename, 'w', encoding='utf-8') as fj:
-        for item in items:
-            if 'Shop on eBay' in item['name']:
-                continue
-            else:
-                fj.write(json.dumps(item))
+        fj.write(json.dumps(items))
