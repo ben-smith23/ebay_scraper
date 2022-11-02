@@ -4,13 +4,18 @@
 
 This python script scrapes information from eBay search query results for items for sale and converts them into a JSON file or, if specified, a CSV file.
 
-```
-PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper> & C:/Users/Ben/AppData/Local/Programs/Python/Python310/python.exe c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py search_term
-```
+The script only requires one argument, <code>search_term</code>, which should be entertered into your Python terminal, as shown below.
 
 ```
-filename = args.search_term+'.json'
-    filename = filename.replace(" ", "_")
-    with open(filename, 'w', encoding='utf-8') as fj:
-        fj.write(json.dumps(items))
+PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
+& C:/Users/Ben/AppData/Local/Programs/Python/Python310/python.exe
+c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py search_term
+```
+
+<code>search_term</code> is the product you intend to search for. For example, if you want to search scrape brooms from eBay, simply write 'brooms' in the terminal. Be sure to include quotation marks if the <code>search_term</code> is more than two words. See the example below:
+
+```
+PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
+& C:/Users/Ben/AppData/Local/Programs/Python/Python310/python.exe
+c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py 'fanny pack'
 ```
