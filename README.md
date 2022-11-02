@@ -12,7 +12,7 @@ PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
 c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py search_term
 ```
 
-<code>search_term</code> is the product you intend to search for. For example, if you want to search scrape brooms from eBay, simply write 'brooms' in the terminal. Be sure to include quotation marks if the <code>search_term</code> is more than two words. See the example below:
+<code>search_term</code> is the product you intend to search for. For example, if you want to scrape brooms from eBay, simply write 'brooms' in the terminal. Be sure to include quotation marks if the <code>search_term</code> is more than two words. See the example below:
 
 ```
 PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
@@ -20,7 +20,7 @@ PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
 c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py 'fanny pack'
 ```
 
-If you want to scrape eBay results into a CSV file rather than a JSON file, use the <code>--csv</code> argument. After you enter your <code>search_term</code> in the terminal, write --csv=True
+If you want to scrape eBay results into a CSV file rather than a JSON file, use the <code>--csv</code> argument. After you enter your <code>search_term</code> in the terminal, write --csv=True.
 
 ```
 PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
