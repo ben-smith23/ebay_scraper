@@ -12,7 +12,15 @@ PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
 c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py search_term
 ```
 
-<code>search_term</code> is the product you intend to search for. For example, if you want to scrape brooms from eBay, simply write 'brooms' in the terminal. Be sure to include quotation marks if the <code>search_term</code> is more than two words. See the example below:
+<code>search_term</code> is the product you intend to search for. For example, if you want to scrape brooms from eBay, simply write 'brooms' in the terminal.
+
+```
+PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
+& C:/Users/Ben/AppData/Local/Programs/Python/Python310/python.exe
+c:/Users/Ben/OneDrive/Desktop/CS40/Projects/ebay_scraper/ebay-dl.py 'brooms'
+```
+
+Be sure to include quotation marks if the <code>search_term</code> is more than two words. See the example below:
 
 ```
 PS C:\Users\Ben\OneDrive\Desktop\CS40\Projects\ebay_scraper>
