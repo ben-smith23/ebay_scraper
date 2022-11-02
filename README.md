@@ -2,7 +2,7 @@
 
 [Instructions for project_03](https://github.com/mikeizbicki/cmc-csci040/tree/2022fall/project_03)
 
-This python script scrapes information from eBay search query results for items for sale and converts them into a JSON file or, if specified, a CSV file. The script provides information on products name, price, status, shipping cost, whether the product has free returns, and number of items sold.
+This python script scrapes information from eBay search query results for items for sale and converts them into a JSON file or, if specified, a CSV file. The script provides information on the product's name, price, status, shipping cost, whether the product has free returns, and the number of items sold.
 
 ## Searching for products
 
